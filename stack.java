@@ -58,3 +58,74 @@ def main():
 
 if __name__ == "__main__":
     main()
+
+
+
+
+
+
+
+
+
+
+class Node:
+    def __init__(self, data):
+        self.data = data
+        self.next = None
+
+class Stack:
+    def __init__(self):
+        self.top = None
+
+    def is_empty(self):
+        return self.top is None
+
+    def push(self, data):
+        new_node = Node(data)
+        new_node.next = self.top  # Point the new node's next to the current top
+        self.top = new_node  # Update the top to the new node
+        print(f"Pushed {data} onto the stack")
+
+    def pop(self):
+        if self.is_empty():
+            print("Stack is empty, cannot pop")
+            return None
+        popped_data = self.top.data
+        self.top = self.top.next  # Move the top pointer to the next node
+        print(f"Popped {popped_data} from the stack")
+        return popped_data
+
+    def peek(self):
+        if self.is_empty():
+            print("Stack is empty")
+            return None
+        return self.top.data  # Return the data at the top of the stack
+
+    def display(self):
+        if self.is_empty():
+            print("Stack is empty")
+            return
+        temp = self.top
+        while temp:
+            print(temp.data, end=" --> ")
+            temp = temp.next
+        print("None")
+
+# Example Usage
+stack = Stack()
+
+stack.push(10)
+stack.push(20)
+stack.push(30)
+
+print("Current Stack:")
+stack.display()
+
+print(f"Top element is {stack.peek()}")
+
+stack.pop()
+
+
+print("Current Stack after popping:")
+stack.display()
+
